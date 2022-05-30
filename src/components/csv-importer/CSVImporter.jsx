@@ -2,30 +2,27 @@
 import { jsx } from '@emotion/react';
 import { CustomCheckbox, InputGroup, SubmitButtonSecondary } from '@pantheon-systems/design-toolkit-react';
 import { Form } from 'informed';
-import Papa from 'papaparse';
 import PropTypes from 'prop-types';
-import * as R from 'ramda';
+import { pathOr } from 'ramda';
 import { useState } from 'react';
+
+import { parseCSV } from '../utils';
 
 import './styles.css';
 
 const CSVImporter = ({ id, onSubmit }) => {
-  const [file, setFile] = useState(undefined);
+  const [file, setFile] = useState('');
 
   const hasHeadersField = `${id}-has-headers`;
 
-  const handleSubmit = (event) => {
-    if (!!file) {
-      Papa.parse(file, {
-        header: R.pathOr(false, ['values', hasHeadersField], event),
-        skipEmptyLines: true,
-        complete: onSubmit,
-      });
-    }
-  };
+  const handleSubmit = (event) => parseCSV({
+    data: file,
+    hasHeaders: pathOr(false, ['values', hasHeadersField], event),
+    onSubmit,
+  });
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form  id={`${id}-form`} onSubmit={handleSubmit}>
       <InputGroup>
         <label className="custom-file-upload" htmlFor={id}>
           <span className="custom-file-upload-fake-button">
@@ -39,7 +36,7 @@ const CSVImporter = ({ id, onSubmit }) => {
             field={id}
             id={id}
             onChange={(event) => {
-              setFile(R.path(['target', 'files', 0], event));
+              setFile(pathOr('', ['target', 'files', 0], event));
             }}
             type="file"
           />
@@ -58,10 +55,8 @@ CSVImporter.defaultProps = {
 };
 
 CSVImporter.propTypes = {
-  buttonText: PropTypes.string,
   id: PropTypes.string.isRequired,
   onSubmit: PropTypes.func,
-  submitText: PropTypes.string,
 };
 
 export default CSVImporter;

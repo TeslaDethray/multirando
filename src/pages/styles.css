@@ -1,0 +1,23 @@
+body {
+  background-color: var(--dt-color-blue-2);
+  margin: 2rem;
+}
+
+.app-centerer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.app-centerer > div {
+  flex: 1 1;
+}
+
+.app-container {
+  background-color: var(--dt-color-blue-1);
+  border: 1px solid var(--dt-color-gray-6);
+  border-radius: 0.25rem;
+  display: block;
+  min-width: 40rem;
+  padding: 2rem;
+}
