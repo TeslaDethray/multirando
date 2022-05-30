@@ -1,6 +1,6 @@
 {
   "name": "@tesladethray/multirando",
-  "private": true,
+  "private": false,
   "description": "Randomizes as many things as you please",
   "version": "0.1.0",
   "author": "Sara McCutcheon <tesladethray+github@gmail.com>",
@@ -42,9 +42,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+    "url": "https://github.com/TeslaDethray/multirando"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/TeslaDethray/multirando/issues"
   }
 }
