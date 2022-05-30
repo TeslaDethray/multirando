@@ -1,0 +1,54 @@
+label.custom-file-upload {
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(178, 193, 203);
+  border-radius: 0.25rem 0 0 0.25rem;
+  border-style: solid;
+  border-width: 1px;
+  color: rgb(40, 49, 57);
+  display: block;
+  font-weight: normal;
+  height: 2.5rem;
+  line-height: 1.5;
+  padding: 0.25rem 0.5rem;
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0px;
+  transition: border-color 0.25s ease-in-out, box-shadow 0.1s ease-in-out, background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+  width: 1%;
+}
+
+.custom-file-upload-fake-button {
+  background-color: rgb(255, 255, 255);
+  background-image: none;
+  border-color: rgb(178, 193, 203);
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-width: 1px;
+  color: rgb(18, 124, 187);
+  cursor: pointer;
+  display: inline-block;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-top: 0.075rem;
+  margin-right: 1rem;
+  padding: 0.25rem 1rem 0.25rem 1rem;
+  text-align: center;
+  -webkit-appearance: button;
+}
+
+.custom-file-upload-fake-button:hover {
+  border-color: rgb(2, 169, 224);
+  background-color: rgb(221, 229, 231);
+}
+
+.custom-file-upload input {
+  display: none;
+}
+
+.custom-file-has-headers {
+  position: absolute;
+  right: 7.5rem;
+  top: 0.25rem;
+}

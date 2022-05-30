@@ -1,5 +1,14 @@
-import React from "react"
+import { Container } from "@pantheon-systems/design-toolkit-react";
+import React, { useState } from "react"
+import '@pantheon-systems/design-toolkit-react/dist/index.css';
+
+import { CSVImporter } from "../components";
 
 export default function Home() {
-  return <div>Hello world!</div>
+
+  return (
+    <Container>
+      <CSVImporter id="csv-import" />
+    </Container>
+  );
 }
