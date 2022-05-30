@@ -2,10 +2,10 @@ import { parse } from 'papaparse';
 
 const parseCSV = ({ data, hasHeaders, onSubmit }) => {
   if (!!data) {
-    return parse(data, {
+     parse(data, {
       header: hasHeaders,
       skipEmptyLines: true,
-      complete: onSubmit,
+      complete: ({ data }) => onSubmit(data),
     });
   }
   return null;

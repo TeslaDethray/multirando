@@ -1,4 +1,5 @@
-import CSVImporter from "./csv-importer";
-import TextareaImporter from "./textarea-importer";
+import CSVImporter from './csv-importer';
+import Randomizer from './randomizer';
+import TextareaImporter from './textarea-importer';
 
-export { CSVImporter, TextareaImporter };
+export { CSVImporter, Randomizer, TextareaImporter };

@@ -14,7 +14,7 @@ body {
 }
 
 .app-container {
-  background-color: var(--dt-color-blue-1);
+  background-color: var(--dt-color-white);
   border: 1px solid var(--dt-color-gray-6);
   border-radius: 0.25rem;
   display: block;
