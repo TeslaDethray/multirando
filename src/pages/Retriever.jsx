@@ -33,7 +33,7 @@ const Retriever = ({ onSubmit }) => {
         id='csv-import'
         onChange={setFile}
       />
-      <h3 className='mt-6 text-2xl text-center'>
+      <h3 className='m-3 text-2xl text-center'>
         - OR -
       </h3>
       <TextareaImporter
