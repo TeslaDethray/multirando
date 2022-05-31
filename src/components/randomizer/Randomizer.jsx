@@ -6,18 +6,27 @@ import {
   Container,
   ContainerFlex,
   FlexContent,
-} from "@pantheon-systems/design-toolkit-react";
+} from '@pantheon-systems/design-toolkit-react';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
+import { pickRandos } from '../utils';
+
+import Rando from './Rando';
 import './styles.css';
 
 const Randomizer = ({ data, onClear }) => {
-  const handleRandomization = () => console.log(data);
+  const [picks, setPicks] = useState(pickRandos(data));
+  const handleRandomization = () => setPicks(pickRandos(data));
 
   return (
     <Container>
-      <div className="mb-4">{JSON.stringify(data)}</div>
-      <ContainerFlex className="randomizer-button-row-flex">
+      {picks.map((props) => (
+        <div className='mb-4'>
+          <Rando {...props} />
+        </div>
+      ))}
+      <ContainerFlex className='randomizer-button-row-flex'>
         <FlexContent>
           <ButtonSecondary onClick={handleRandomization}>
             Reselect
@@ -25,7 +34,7 @@ const Randomizer = ({ data, onClear }) => {
         </FlexContent>
         {!!onClear && (
           <FlexContent>
-            <div className="text-right">
+            <div className='text-right'>
               <ButtonTertiary onClick={onClear}>
                 Clear CSV Data
               </ButtonTertiary>

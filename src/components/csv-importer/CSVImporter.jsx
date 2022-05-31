@@ -24,24 +24,24 @@ const CSVImporter = ({ id, onSubmit }) => {
   return (
     <Form  id={`${id}-form`} onSubmit={handleSubmit}>
       <InputGroup>
-        <label className="custom-file-upload" htmlFor={id}>
-          <span className="custom-file-upload-fake-button">
+        <label className='custom-file-upload' htmlFor={id}>
+          <span className='custom-file-upload-fake-button'>
             Select CSV File
           </span>
           { file?.name }
           <input
-            accept="text/csv"
-            aria-label="Upload"
-            className="form-control"
+            accept='text/csv'
+            aria-label='Upload'
+            className='form-control'
             field={id}
             id={id}
             onChange={(event) => {
               setFile(pathOr('', ['target', 'files', 0], event));
             }}
-            type="file"
+            type='file'
           />
         </label>
-        <CustomCheckbox className="custom-file-has-headers" field={hasHeadersField}>Has Headers</CustomCheckbox>
+        <CustomCheckbox className='custom-file-has-headers' field={hasHeadersField}>Has Headers</CustomCheckbox>
         <SubmitButtonSecondary id={`${id}-submit-button`}>
           Upload
         </SubmitButtonSecondary>

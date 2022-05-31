@@ -15,6 +15,8 @@ const formatData = (data, { hasHeaders = false, isColumnar = false } ) => {
   return keyedData;
 };
 
+const getArbitraryItem = (list) => list[Math.floor(Math.random() * list.length)];
+
 const parseCSV = ({ data, hasHeaders, isColumnar, onSubmit }) => {
   if (!!data) {
      parse(data, {
@@ -25,4 +27,16 @@ const parseCSV = ({ data, hasHeaders, isColumnar, onSubmit }) => {
   return null;
 };
 
-export { parseCSV };
+const pickRandos = (data) => {
+  const randos = [];
+  R.pipe(
+    R.keys,
+    R.forEach((index) => randos.push({
+      item: getArbitraryItem(data[index]),
+      title: /^-?\d+$/.test(index) ? null : index
+    }))
+  )(data);
+  return randos;
+};
+
+export { parseCSV, pickRandos };
