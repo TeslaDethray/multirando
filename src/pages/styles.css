@@ -21,3 +21,11 @@ body {
   min-width: 40rem;
   padding: 2rem;
 }
+
+.flex-container {
+  display: flex;
+}
+
+.flex-content {
+  flex: 1 1;
+}

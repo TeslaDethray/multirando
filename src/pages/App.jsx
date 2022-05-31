@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import { Container, HX as Hx } from '@pantheon-systems/design-toolkit-react';
 import { Fragment, useState } from 'react';
 
 import { CSVImporter, Randomizer, TextareaImporter } from '../components';
@@ -12,32 +11,32 @@ const App = () => {
 
   return (
     <div className="app-centerer">
-      <Container>
+      <div className='max-w-8xl px-4 md:px-8'>
         <div className="app-container">
-          <Hx level={1} levelStyle={2}>
+          <h1 className='text-2xl'>
             Multi Randomizer
-          </Hx>
+          </h1>
           {!!data
             ? (
               <Randomizer data={data} onClear={() => setData(undefined)} />
             ) : (
               <Fragment>
-                <Hx className='mt-6' level={2} levelStyle={4}>
+                <h2 className='mt-6 text-lg'>
                   Import Data from File
-                </Hx>
+                </h2>
                 <CSVImporter id='csv-import' onSubmit={setData} />
-                <Hx className='mt-6 text-center' level={3} levelStyle={2}>
+                <h3 className='mt-6 text-2xl'>
                   - OR -
-                </Hx>
-                <Hx className='mt-6' level={2} levelStyle={4}>
+                </h3>
+                <h2 className='mt-6 text-lg'>
                   Paste Data
-                </Hx>
+                </h2>
                 <TextareaImporter id='textarea-import' onSubmit={setData} />
               </Fragment>
             )
           }
         </div>
-      </Container>
+      </div>
     </div>
   );
 };

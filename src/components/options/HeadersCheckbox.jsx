@@ -1,11 +1,24 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import { CustomCheckbox } from '@pantheon-systems/design-toolkit-react';
+import PropTypes from 'prop-types';
 
-const HeadersCheckbox = (props) => (
-  <CustomCheckbox {...props}>
-    Has Headers
-  </CustomCheckbox>
+const HeadersCheckbox = ({ field, ...rest }) => (
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      name={field}
+      id={field}
+      type="checkbox"
+      {...rest}
+    />
+    <label className="form-check-label" htmlFor={field}>
+      Has Headers
+    </label>
+  </div>
 );
+
+HeadersCheckbox.propTypes = {
+  field: PropTypes.string.isRequired,
+};
 
 export default HeadersCheckbox;

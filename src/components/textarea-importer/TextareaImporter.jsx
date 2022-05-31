@@ -1,64 +1,74 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import { ContainerFlex, CustomCheckbox, FlexContent, InputGroup, SubmitButtonSecondary } from '@pantheon-systems/design-toolkit-react';
-import { Form, TextArea } from 'informed';
+import { Form } from 'informed';
 import PropTypes from 'prop-types';
-import { pathOr, pipe } from 'ramda';
+import { useState } from 'react';
 
-import { HeadersCheckbox, OrientationSelect, isOrientationColumnar} from '../options';
+import { HeadersCheckbox, OrientationSelect, isOrientationColumnar } from '../options';
 import { parseCSV } from '../utils';
 
-import './styles.css';
-
 const TextareaImporter = ({ id, onSubmit }) => {
-  const hasHeadersField = `${id}-has-headers`;
-  const isColumnarField = `${id}-data-is-columnar`;
+  const [input, setInput] = useState('');
+  const [hasHeaders, setHasHeaders] = useState(false);
+  const [isColumnar, setIsColumnar] = useState(true);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
     parseCSV({
-      data: pathOr('', ['values', id], event),
-      hasHeaders: pathOr(false, ['values', hasHeadersField], event),
-      isColumnar: pipe(
-        pathOr('cols', ['values', isColumnarField]),
-        isOrientationColumnar
-      )(event),
+      data: input,
+      hasHeaders,
+      isColumnar,
       onSubmit,
     });
   };
 
   return (
-    <Form id={`${id}-form`} onSubmit={handleSubmit}>
-      <InputGroup>
-        <label htmlFor={id}>
-          Paste CSV Data
-        </label>
-        <TextArea
-          aria-label='Paste CSV Data'
-          className='textarea-importer-textarea'
-          field={id}
-          id={id}
-          placeholder='Paste CSV Data'
-        />
-      </InputGroup>
-      <ContainerFlex className='mt-4 textarea-importer-button-row-flex'>
-        <FlexContent>
-          <InputGroup>
-            <HeadersCheckbox field={hasHeadersField} />
-          </InputGroup>
-        </FlexContent>
-        <FlexContent>
-          <InputGroup>
-            <OrientationSelect field={isColumnarField} />
-          </InputGroup>
-        </FlexContent>
-        <FlexContent>
-          <div className='text-right'>
-            <SubmitButtonSecondary id={`${id}-submit-button`}>
-              Submit
-            </SubmitButtonSecondary>
+    <Form id={`${id}-form`}>
+      <div className="input-group">
+        <div className="input-group">
+          <span className="input-group-text">Paste Data</span>
+          <textarea
+            aria-label='Paste CSV Data'
+            className="form-control"
+            id={id}
+            name={id}
+            onChange={({ target: { value } }) => setInput(value)}
+            placeholder='Paste CSV Data'
+          >
+            {input}
+          </textarea>
+        </div>
+      </div>
+      <div className='d-flex justify-content-between'>
+        <div className='flex-content'>
+          <div className="input-group">
+            <HeadersCheckbox
+              field={`${id}-has-headers`}
+              onChange={({ value }) => setHasHeaders(value)}
+            />
           </div>
-        </FlexContent>
-      </ContainerFlex>
+        </div>
+        <div className='flex-content'>
+          <div className='input-group'>
+            <OrientationSelect
+              field={`${id}-data-is-columnar`}
+              onChange={({ target: { value } }) => {
+                setIsColumnar(isOrientationColumnar(value))
+              }}
+            />
+          </div>
+        </div>
+        <div className='flex-content'>
+          <div className='text-right'>
+            <button
+              className='button-secondary'
+              id={`${id}-submit-button`}
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
     </Form>
   );
 };

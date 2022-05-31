@@ -1,60 +1,55 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import {ContainerFlex, CustomCheckbox, InputGroup, SubmitButtonSecondary} from '@pantheon-systems/design-toolkit-react';
 import { Form } from 'informed';
 import PropTypes from 'prop-types';
-import { pathOr, pipe } from 'ramda';
 import { useState } from 'react';
 
 import { HeadersCheckbox, OrientationSelect, isOrientationColumnar } from '../options';
 import { parseCSV } from '../utils';
 
-import './styles.css';
-
 const CSVImporter = ({ id, onSubmit }) => {
   const [file, setFile] = useState('');
+  const [hasHeaders, setHasHeaders] = useState(false);
+  const [isColumnar, setIsColumnar] = useState(true);
 
-  const hasHeadersField = `${id}-has-headers`;
-  const isColumnarField = `${id}-data-is-columnar`;
-
-  const handleSubmit = (event) => parseCSV({
+  const handleSubmit = () => parseCSV({
     data: file,
-    hasHeaders: pathOr(false, ['values', hasHeadersField], event),
-    isColumnar: pipe(
-      pathOr('cols', ['values', isColumnarField]),
-      isOrientationColumnar
-    )(event),
+    hasHeaders,
+    isColumnar,
     onSubmit,
   });
 
   return (
-    <Form  id={`${id}-form`} onSubmit={handleSubmit}>
-      <InputGroup>
-        <label className='custom-file-upload' htmlFor={id}>
-          <span className='custom-file-upload-fake-button'>
-            Select CSV File
-          </span>
-          { file?.name }
-          <input
-            accept='text/csv'
-            aria-label='Upload'
-            className='form-control'
-            field={id}
-            id={id}
-            onChange={(event) => {
-              setFile(pathOr('', ['target', 'files', 0], event));
-            }}
-            type='file'
-          />
-        </label>
-        <ContainerFlex className="custom-file-options">
-          <HeadersCheckbox className='custom-file-has-headers' field={hasHeadersField} />
-          <OrientationSelect field={isColumnarField} hideLabel />
-        </ContainerFlex>
-        <SubmitButtonSecondary id={`${id}-submit-button`}>
+    <Form id={`${id}-form`}>
+      <div className="input-group">
+        <input
+          aria-label="Upload"
+          className="form-control"
+          id={id}
+          name={id}
+          onChange={({ target: { files } }) => setFile(files[0])}
+          type="file"
+        />
+      </div>
+      <div className="d-flex justify-content-between">
+        <HeadersCheckbox
+          field={`${id}-has-headers`}
+          onChange={({ value }) => setHasHeaders(value)}
+        />
+        <OrientationSelect
+          field={`${id}-data-is-columnar`}
+          hideLabel
+          onChange={({ target: { value } }) => {
+            setIsColumnar(isOrientationColumnar(value))
+          }}
+        />
+        <button
+          className='button-secondary'
+          onClick={handleSubmit}
+        >
           Upload
-        </SubmitButtonSecondary>
-      </InputGroup>
+        </button>
+      </div>
     </Form>
   );
 };

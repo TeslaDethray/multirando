@@ -1,48 +1,38 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import {
-  ButtonSecondary,
-  ButtonTertiary,
-  Container,
-  ContainerFlex,
-  FlexContent,
-} from '@pantheon-systems/design-toolkit-react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import { pickRandos } from '../utils';
 
 import Rando from './Rando';
-import './styles.css';
 
 const Randomizer = ({ data, onClear }) => {
   const [picks, setPicks] = useState(pickRandos(data));
   const handleRandomization = () => setPicks(pickRandos(data));
 
   return (
-    <Container>
+    <div className='max-w-8xl px-4 md:px-8'>
       {picks.map((props) => (
         <div className='mb-4'>
           <Rando {...props} />
         </div>
       ))}
-      <ContainerFlex className='randomizer-button-row-flex'>
-        <FlexContent>
-          <ButtonSecondary onClick={handleRandomization}>
+      <div className='d-flex'>
+        <div className='flex-content'>
+          <button className='button-secondary' onClick={handleRandomization}>
             Reselect
-          </ButtonSecondary>
-        </FlexContent>
+          </button>
+        </div>
         {!!onClear && (
-          <FlexContent>
-            <div className='text-right'>
-              <ButtonTertiary onClick={onClear}>
-                Clear CSV Data
-              </ButtonTertiary>
-            </div>
-          </FlexContent>
+          <div className='flex-content'>
+            <button className='button-tertiary' onClick={onClear}>
+              Clear CSV Data
+            </button>
+          </div>
         )}
-      </ContainerFlex>
-    </Container>
+      </div>
+    </div>
   );
 };
 

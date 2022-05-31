@@ -1,10 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import { Option, Select } from 'informed';
 import PropTypes from 'prop-types';
-import { ContainerFlex } from "@pantheon-systems/design-toolkit-react";
-
-import './styles.css';
 
 const options = {
   cols: {
@@ -23,22 +19,28 @@ const options = {
 
 export const isOrientationColumnar = (name) => options[name].value;
 
-const OrientationSelect = ({ field, hideLabel, ...rest}) => (
-  <ContainerFlex className="orientation-flex-alignment">
+const OrientationSelect = ({ id, hideLabel, ...rest}) => (
+  <div className="d-flex">
     <label
-      className={hideLabel ? 'sr-only' : 'mr-4 orientation-flex-label text-right'}
-      htmlFor={field}
+      className={hideLabel && 'sr-only'}
+      htmlFor={id}
     >
       Orientation
     </label>
-    <Select className="orientation-flex-select" name={field} {...rest}>
+    <select
+      aria-label="Paste CSV Data"
+      className="form-select"
+      id={id}
+      name={id}
+      {...rest}
+    >
       {Object.values(options).map(({ label, name, selected }) => (
-        <Option key={name} selected={selected && 'selected'} value={name}>
+        <option key={name} selected={selected && 'selected'} value={name}>
           {label}
-        </Option>
+        </option>
       ))}
-    </Select>
-  </ContainerFlex>
+    </select>
+  </div>
 );
 
 OrientationSelect.defaultProps = {
@@ -46,7 +48,7 @@ OrientationSelect.defaultProps = {
 };
 
 OrientationSelect.propTypes = {
-  field: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   hideLabel: PropTypes.bool,
 };
 
