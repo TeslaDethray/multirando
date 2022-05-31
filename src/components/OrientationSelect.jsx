@@ -17,21 +17,21 @@ const options = {
   }
 };
 
-export const isOrientationColumnar = (name) => options[name].value;
+const isOrientationColumnar = (name) => options[name].value;
 
-const OrientationSelect = ({ id, hideLabel, ...rest}) => (
-  <div className="d-flex">
-    <label
-      className={hideLabel && 'sr-only'}
-      htmlFor={id}
-    >
+const OrientationSelect = ({ name, onChange, ...rest }) => (
+  <div className="d-flex align-items-center">
+    <label className='me-2' htmlFor={name}>
       Orientation
     </label>
     <select
       aria-label="Paste CSV Data"
-      className="form-select"
-      id={id}
-      name={id}
+      className="form-select form-select-sm"
+      id={name}
+      name={name}
+      onChange={({ target: { value } }) => {
+        onChange(isOrientationColumnar(value))
+      }}
       {...rest}
     >
       {Object.values(options).map(({ label, name, selected }) => (
@@ -44,12 +44,13 @@ const OrientationSelect = ({ id, hideLabel, ...rest}) => (
 );
 
 OrientationSelect.defaultProps = {
-  hideLabel: false,
+  name: 'orientation-checkbox',
+  onChange: () => {},
 };
 
 OrientationSelect.propTypes = {
-  id: PropTypes.string.isRequired,
-  hideLabel: PropTypes.bool,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default OrientationSelect;
