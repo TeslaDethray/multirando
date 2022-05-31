@@ -1,6 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 import { useCallback, useState } from 'react';
+import { hot } from 'react-hot-loader/root';
+import { Helmet } from 'react-helmet';
 import Cookies from 'universal-cookie';
 
 import { Randomizer } from '../components';
@@ -26,19 +28,25 @@ const App = () => {
 
 
   return (
-    <div className='max-w-8xl px-4 md:px-8'>
-      <h1 className='text-2xl'>
-        Multi Randomizer
-      </h1>
-      {hasData()
-        ? (
-          <Randomizer data={getData()} onClear={clearData} />
-        ) : (
-          <Retriever onSubmit={setData} />
-        )
-      }
+    <div className="application">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Multi Randomizer</title>
+      </Helmet>
+      <div className='max-w-8xl px-4 md:px-8'>
+        <h1 className='text-2xl'>
+          Multi Randomizer
+        </h1>
+        {hasData()
+          ? (
+            <Randomizer data={getData()} onClear={clearData} />
+          ) : (
+            <Retriever onSubmit={setData} />
+          )
+        }
+      </div>
     </div>
   );
 };
 
-export default App;
+export default hot(App);
