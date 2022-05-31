@@ -18,27 +18,32 @@ label.custom-file-upload {
 }
 
 .custom-file-upload-fake-button {
+  color: rgb(18, 124, 187);
+  font-weight: 600;
+  margin-right: 1rem;
+  margin-top: 0.075rem;
+  padding: 0.25rem 1rem 0.25rem 1rem;
+}
+
+.custom-file-upload-fake-button,
+.custom-file-options select {
   background-color: rgb(255, 255, 255);
   background-image: none;
   border-color: rgb(178, 193, 203);
   border-radius: 0.25rem;
   border-style: solid;
   border-width: 1px;
-  color: rgb(18, 124, 187);
   cursor: pointer;
   display: inline-block;
   flex-shrink: 0;
   font-size: 0.75rem;
-  font-weight: 600;
   line-height: 1.5;
-  margin-top: 0.075rem;
-  margin-right: 1rem;
-  padding: 0.25rem 1rem 0.25rem 1rem;
   text-align: center;
   -webkit-appearance: button;
 }
 
-.custom-file-upload-fake-button:hover {
+.custom-file-upload-fake-button:hover,
+.custom-file-options:hover {
   border-color: rgb(2, 169, 224);
   background-color: rgb(221, 229, 231);
 }
@@ -47,8 +52,18 @@ label.custom-file-upload {
   display: none;
 }
 
-.custom-file-has-headers {
+.custom-file-options {
   position: absolute;
-  right: 7.5rem;
+  right: 6.5rem;
   top: 0.25rem;
+}
+
+.custom-file-options select {
+  height: 2rem;
+  min-width: 8rem;
+}
+
+.custom-file-options > * {
+  flex: 1 1;
+  margin-right: 1rem;
 }
