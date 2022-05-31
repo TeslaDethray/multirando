@@ -1,0 +1,1 @@
+{"version":3,"file":"component---src-pages-index-js-c2d8520626a60bfbecf2.js","mappings":"8JAGA,UAAeA,EAAf","sources":["webpack://@tesladethray/multirando/./src/pages/index.js"],"sourcesContent":["import 'bootstrap/dist/css/bootstrap.min.css';\nimport App from './App';\n\nexport default App;"],"names":["App"],"sourceRoot":""}
