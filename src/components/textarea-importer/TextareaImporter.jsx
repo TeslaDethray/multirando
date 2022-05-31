@@ -5,6 +5,7 @@ import { Form, TextArea } from 'informed';
 import PropTypes from 'prop-types';
 import { pathOr } from 'ramda';
 
+import HeadersCheckbox from '../HeadersCheckbox';
 import { parseCSV } from '../utils';
 
 import './styles.css';
@@ -35,7 +36,7 @@ const TextareaImporter = ({ id, onSubmit }) => {
       <ContainerFlex className="mt-4 textarea-importer-button-row-flex">
         <FlexContent>
           <InputGroup>
-            <CustomCheckbox field={hasHeadersField}>Has Headers</CustomCheckbox>
+            <HeadersCheckbox field={hasHeadersField} />
           </InputGroup>
         </FlexContent>
         <FlexContent>

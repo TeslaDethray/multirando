@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { pathOr } from 'ramda';
 import { useState } from 'react';
 
+import HeadersCheckbox from '../HeadersCheckbox';
 import { parseCSV } from '../utils';
 
 import './styles.css';
@@ -41,7 +42,7 @@ const CSVImporter = ({ id, onSubmit }) => {
             type='file'
           />
         </label>
-        <CustomCheckbox className='custom-file-has-headers' field={hasHeadersField}>Has Headers</CustomCheckbox>
+        <HeadersCheckbox className='custom-file-has-headers' field={hasHeadersField} />
         <SubmitButtonSecondary id={`${id}-submit-button`}>
           Upload
         </SubmitButtonSecondary>
