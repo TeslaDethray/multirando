@@ -3,6 +3,7 @@ import { jsx } from '@emotion/react';
 import {
   ButtonSecondary,
   ButtonTertiary,
+  Container,
   ContainerFlex,
   FlexContent,
 } from "@pantheon-systems/design-toolkit-react";
@@ -14,22 +15,25 @@ const Randomizer = ({ data, onClear }) => {
   const handleRandomization = () => console.log(data);
 
   return (
-    <ContainerFlex className="randomizer-button-row-flex">
-      <FlexContent>
-        <ButtonSecondary onClick={handleRandomization}>
-          Reselect
-        </ButtonSecondary>
-      </FlexContent>
-      {!!onClear && (
+    <Container>
+      <div className="mb-4">{JSON.stringify(data)}</div>
+      <ContainerFlex className="randomizer-button-row-flex">
         <FlexContent>
-          <div className="text-right">
-            <ButtonTertiary onClick={onClear}>
-              Clear CSV Data
-            </ButtonTertiary>
-          </div>
+          <ButtonSecondary onClick={handleRandomization}>
+            Reselect
+          </ButtonSecondary>
         </FlexContent>
-      )}
-    </ContainerFlex>
+        {!!onClear && (
+          <FlexContent>
+            <div className="text-right">
+              <ButtonTertiary onClick={onClear}>
+                Clear CSV Data
+              </ButtonTertiary>
+            </div>
+          </FlexContent>
+        )}
+      </ContainerFlex>
+    </Container>
   );
 };
 
