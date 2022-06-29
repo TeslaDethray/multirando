@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Sara McCutcheon <tesladethray+github@gmail.com>",
   "license": "0BSD",
+  "homepage": "https://www.tesladethray.me/multirando",
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
